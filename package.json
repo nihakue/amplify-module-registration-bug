@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@aws-amplify/analytics": "1.2.12",
+    "@aws-amplify/auth": "1.2.19",
+    "@aws-amplify/core": "1.0.23",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "2.1.8"

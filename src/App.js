@@ -1,24 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Amplify from '@aws-amplify/core';
+import AuthAmplify from '@aws-amplify/auth/node_modules/@aws-amplify/core';
+import AnalyticsAmplify from '@aws-amplify/analytics/node_modules/@aws-amplify/core';
 import './App.css';
+
+function registeredComponents(amplify) {
+  return amplify._components.map(comp => {
+    if (typeof comp.getModuleName === 'function') {
+      return comp.getModuleName()
+    } else {
+      return comp
+    }
+  })
+}
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <ul>
+            <li>
+            {`Amplify registered components: ${registeredComponents(Amplify)}`}
+            </li>
+            <li>
+              {`Auth Amplify registered components: ${registeredComponents(AuthAmplify)}`}
+            </li>
+            <li>
+              {`Analytics Amplify registered components: ${registeredComponents(AnalyticsAmplify)}`}
+            </li>
+          </ul>
         </header>
       </div>
     );
